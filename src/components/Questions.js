@@ -23,54 +23,54 @@ export default function Questions(props) {
       options: ["Right", "Up", "Down", "Left"],
       correct: "Left",
     },
-    {
-      id: 3,
-      question: "How many equal sides does an isosceles triangle have?",
-      options: ["2", "3", "4", "1"],
-      correct: "2",
-    },
-    {
-      id: 4,
-      question: "Which is the coldest location in the earth?",
-      options: ["America", "Africa", "Antarctica", "Ooty"],
-      correct: "Antarctica",
-    },
-    {
-      id: 5,
-      question:
-        "Which two parts of the body continue to grow for your entire life?",
-      options: [
-        "Eyes and Brain",
-        "Teeth and Toung",
-        "Lungs and Liver",
-        "Nose and Ears",
-      ],
-      correct: "Nose and Ears",
-    },
-    {
-      id: 6,
-      question: "The largest ‘Democracy’ in the world?",
-      options: ["China", "India", "America", "Russia"],
-      correct: "India",
-    },
-    {
-      id: 7,
-      question: "What color symbolizes peace?",
-      options: ["White", "Yellow", "Blue", "Green"],
-      correct: "White",
-    },
-    {
-      id: 8,
-      question: "During which year did World War I begin?",
-      options: ["1930", "1941", "1914", "1935"],
-      correct: "1914",
-    },
-    {
-      id: 9,
-      question: "How many Cricket world cups does India have?",
-      options: ["5", "8", "4", "2"],
-      correct: "2",
-    },
+    // {
+    //   id: 3,
+    //   question: "How many equal sides does an isosceles triangle have?",
+    //   options: ["2", "3", "4", "1"],
+    //   correct: "2",
+    // },
+    // {
+    //   id: 4,
+    //   question: "Which is the coldest location in the earth?",
+    //   options: ["America", "Africa", "Antarctica", "Ooty"],
+    //   correct: "Antarctica",
+    // },
+    // {
+    //   id: 5,
+    //   question:
+    //     "Which two parts of the body continue to grow for your entire life?",
+    //   options: [
+    //     "Eyes and Brain",
+    //     "Teeth and Toung",
+    //     "Lungs and Liver",
+    //     "Nose and Ears",
+    //   ],
+    //   correct: "Nose and Ears",
+    // },
+    // {
+    //   id: 6,
+    //   question: "The largest ‘Democracy’ in the world?",
+    //   options: ["China", "India", "America", "Russia"],
+    //   correct: "India",
+    // },
+    // {
+    //   id: 7,
+    //   question: "What color symbolizes peace?",
+    //   options: ["White", "Yellow", "Blue", "Green"],
+    //   correct: "White",
+    // },
+    // {
+    //   id: 8,
+    //   question: "During which year did World War I begin?",
+    //   options: ["1930", "1941", "1914", "1935"],
+    //   correct: "1914",
+    // },
+    // {
+    //   id: 9,
+    //   question: "How many Cricket world cups does India have?",
+    //   options: ["5", "8", "4", "2"],
+    //   correct: "2",
+    // },
   ]);
   const [ans, setans] = useState();
 
@@ -92,6 +92,8 @@ export default function Questions(props) {
   const [over, setOver] = useState(false);
 
   const [showAnswers, setShowAnswers] = useState(false);
+
+  const [isDisabled, setIsDisabled] = useState(true);
 
   var random = Math.floor(Math.random() * questions.length);
 
@@ -116,13 +118,13 @@ export default function Questions(props) {
   }, [nextClick]);
 
   const newQuestion = (id) => {
-    console.log(ans);
     setgivenAns([...givenAns, ans]);
     setnextClick(true);
 
     const newQ = rquestion.filter((question) => question.id !== id);
 
     setrquestion(newQ);
+    setIsDisabled(true);
     // console.log(givenAns);
   };
 
@@ -147,6 +149,7 @@ export default function Questions(props) {
       const s = score + 1;
       setscore(s);
     }
+    setIsDisabled(false);
   };
 
   const playAgain = () => {
@@ -156,7 +159,10 @@ export default function Questions(props) {
     setnewquestion(questions[random]);
     setresult(false);
     setscore(0);
-    setgivenAns("");
+    setgivenAns([]);
+    setOver(false);
+    setShowAnswers(false);
+    setIsDisabled(true)
   };
 
   const handleShowAnswers = () => {
@@ -176,14 +182,22 @@ export default function Questions(props) {
             </div>
           ))}
           {!nextClick && (
-            <button type="submit" onClick={() => newQuestion(newquestion.id)}>
+            <button
+              type="submit"
+              disabled={isDisabled}
+              onClick={() => newQuestion(newquestion.id)}
+            >
               next
             </button>
           )}
-          {finish && <button onClick={userScore}>finish</button>}
+          {finish && (
+            <button onClick={userScore} disabled={isDisabled}>
+              finish
+            </button>
+          )}
         </div>
       )}
-      {over && (
+      {over && !showAnswers && (
         <Score
           result={result}
           score={score}
@@ -192,7 +206,7 @@ export default function Questions(props) {
           handleShowAnswers={handleShowAnswers}
         />
       )}
-      {showAnswers && <Answers givenAns={givenAns} />}
+      {showAnswers && <Answers givenAns={givenAns} playAgain={playAgain} />}
     </div>
   );
 }
