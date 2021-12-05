@@ -3,6 +3,7 @@ import React from "react";
 export default function Score({
   result,
   score,
+  correctAnsCount,
   questions,
   playAgain,
   handleShowAnswers,
@@ -15,7 +16,7 @@ export default function Score({
           <h1>Your Score</h1>
           <h2>{score}%</h2>
           <h3>
-            {score / questions.length}/{questions.length}
+            {correctAnsCount}/{questions.length}
           </h3>
           <button onClick={playAgain}>retake</button>
           <button onClick={handleShowAnswers}>Show Answers</button>
