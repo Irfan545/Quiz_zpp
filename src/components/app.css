@@ -1,0 +1,174 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    
+}
+
+body{
+    background-image: linear-gradient(to right,#A1CBE3 ,#1A77AD );
+}
+.header{
+    display: flex;
+    justify-content: center;
+    margin-top: 3rem;
+}
+.main-div{
+    background-color: whitesmoke;
+    /* display: flex; */
+    justify-content: center;
+    /* margin:0 25vw; */
+    border: 5px solid #13557C;
+    margin:3rem auto;
+    padding: 2rem;
+    width:60rem;
+    border-radius: 1rem;
+}
+
+.question{
+    border-bottom: 2px solid black;
+    display: flex;
+    font-weight: 600;
+    font-size: 2rem;
+    justify-content: center;
+    /* background-color: wheat; */
+}
+.options{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+.option-container{
+    display: flex;
+    justify-content: center;
+    width: 20rem;
+   /* background-color: wheat;
+   border-bottom: 5px solid tomato; */
+}
+.option-button{
+    background-color: transparent;
+    outline: none;
+    border: 2px solid black;
+    width: 30rem;
+    margin-top: 3rem;
+    padding: .5rem;
+    font-size: 1.8rem;
+    transition: .2s ease-in-out;
+}
+.option-button:hover{
+    background-color: #A1CBE3;
+    /* color: whitesmoke; */
+}
+.option-button:focus{
+    background-color: #ffb703;
+    border: 3px solid black;
+    color: black;
+}
+
+.next-button-container{
+    display: flex;
+    margin-top: 4rem;
+    justify-content: center;
+}
+.next-finish{
+    text-align: center;
+    background-color: #16A22D;
+    width: 8rem;
+    font-size: 1.2rem;
+    padding: 1rem;
+    color: black;
+    outline: none;
+    border: 2px solid black;
+    border-radius: .5rem;
+    transition: .1s ease-in;
+}
+
+.next-finish:hover{
+    background-color: #1BC537;
+    /* border: none; */
+    color: black;
+}
+
+.next-finish:focus{
+    border: none;
+    background-color: rgb(169, 245, 92);
+}
+
+.score-header{
+    /* margin-top:3rem ; */
+    font-size: 3rem;
+    font-weight: 600;
+}
+.percentage-color{
+    margin-top: 2rem;
+    font-size: 2rem;
+    color:black;
+}
+
+.retake-ans{
+    margin-top: 2rem;
+    outline: none;
+    border: 2px solid black;
+    border-radius: .5rem;
+    background-color: #1BC537;
+    color: black;
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 1.5rem;
+}
+.retake-ans:hover{
+    background-color:#16A22D;
+    border: none;
+}
+.retake-ans:focus{
+    background-color:#16A22D;
+    border: none;
+}
+
+.score-buttons{
+    display: flex;
+    justify-content:space-around;
+}
+
+.score{
+    padding: 2rem;
+    margin: 3rem 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    /* glassmorphism */
+    /* From https://css.glass */
+    background: rgba(255, 255, 255, 0.19);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5.6px);
+    -webkit-backdrop-filter: blur(5.6px);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+.ans-header{
+        margin:3rem auto;
+        text-align: center;
+        font-size: 3rem;
+        font-weight: 600;       
+}
+
+.ans-options{
+    padding: 2rem;
+    margin:2rem 20rem;
+    display: flex;
+    width: auto;
+    justify-content: center;
+    /* glassmorphism */
+    /* From https://css.glass */
+    background: rgba(255, 255, 255, 0.19);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5.6px);
+    -webkit-backdrop-filter: blur(5.6px);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+}

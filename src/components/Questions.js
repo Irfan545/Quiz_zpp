@@ -1,4 +1,5 @@
 import React from "react";
+import './app.css'
 import { useEffect, useState, useRef } from "react";
 import Answers from "./Answers";
 import Score from "./Score";
@@ -17,60 +18,60 @@ export default function Questions(props) {
       options: ["Trigon", "Hexagon", "Pentagon", "Octagon"],
       correct: "Pentagon",
     },
-    {
-      id: 2,
-      question: "Which way is anti-clockwise?",
-      options: ["Right", "Up", "Down", "Left"],
-      correct: "Left",
-    },
-    {
-      id: 3,
-      question: "How many equal sides does an isosceles triangle have?",
-      options: ["2", "3", "4", "1"],
-      correct: "2",
-    },
-    {
-      id: 4,
-      question: "Which is the coldest location in the earth?",
-      options: ["America", "Africa", "Antarctica", "Ooty"],
-      correct: "Antarctica",
-    },
-    {
-      id: 5,
-      question:
-        "Which two parts of the body continue to grow for your entire life?",
-      options: [
-        "Eyes and Brain",
-        "Teeth and Toung",
-        "Lungs and Liver",
-        "Nose and Ears",
-      ],
-      correct: "Nose and Ears",
-    },
-    {
-      id: 6,
-      question: "The largest ‘Democracy’ in the world?",
-      options: ["China", "India", "America", "Russia"],
-      correct: "India",
-    },
-    {
-      id: 7,
-      question: "What color symbolizes peace?",
-      options: ["White", "Yellow", "Blue", "Green"],
-      correct: "White",
-    },
-    {
-      id: 8,
-      question: "During which year did World War I begin?",
-      options: ["1930", "1941", "1914", "1935"],
-      correct: "1914",
-    },
-    {
-      id: 9,
-      question: "How many Cricket world cups does India have?",
-      options: ["5", "8", "4", "2"],
-      correct: "2",
-    },
+    // {
+    //   id: 2,
+    //   question: "Which way is anti-clockwise?",
+    //   options: ["Right", "Up", "Down", "Left"],
+    //   correct: "Left",
+    // },
+    // {
+    //   id: 3,
+    //   question: "How many equal sides does an isosceles triangle have?",
+    //   options: ["2", "3", "4", "1"],
+    //   correct: "2",
+    // },
+    // {
+    //   id: 4,
+    //   question: "Which is the coldest location in the earth?",
+    //   options: ["America", "Africa", "Antarctica", "Ooty"],
+    //   correct: "Antarctica",
+    // },
+    // {
+    //   id: 5,
+    //   question:
+    //     "Which two parts of the body continue to grow for your entire life?",
+    //   options: [
+    //     "Eyes and Brain",
+    //     "Teeth and Toung",
+    //     "Lungs and Liver",
+    //     "Nose and Ears",
+    //   ],
+    //   correct: "Nose and Ears",
+    // },
+    // {
+    //   id: 6,
+    //   question: "The largest ‘Democracy’ in the world?",
+    //   options: ["China", "India", "America", "Russia"],
+    //   correct: "India",
+    // },
+    // {
+    //   id: 7,
+    //   question: "What color symbolizes peace?",
+    //   options: ["White", "Yellow", "Blue", "Green"],
+    //   correct: "White",
+    // },
+    // {
+    //   id: 8,
+    //   question: "During which year did World War I begin?",
+    //   options: ["1930", "1941", "1914", "1935"],
+    //   correct: "1914",
+    // },
+    // {
+    //   id: 9,
+    //   question: "How many Cricket world cups does India have?",
+    //   options: ["5", "8", "4", "2"],
+    //   correct: "2",
+    // },
   ]);
 
   const [ans, setans] = useState();
@@ -113,22 +114,26 @@ export default function Questions(props) {
       setnextClick(false);
       // console.log(rquestion);
     }
-
+    
     if (rquestion.length === 1) {
       setfinish(true);
       setnextClick(true);
     }
   }, [nextClick]);
-
+  
   const newQuestion = (id) => {
     setgivenAns([...givenAns, ans]);
     setnextClick(true);
-
+    
     const newQ = rquestion.filter((question) => question.id !== id);
-
+    
     setrquestion(newQ);
     setIsDisabled(true);
-    // console.log(givenAns);
+    // if (newquestion.correct === choosen) {
+    //   const s = score + 1;
+    //   setscore(s);
+    // }
+    // console.log(...givenAns);
   };
 
   const userScore = () => {
@@ -148,7 +153,7 @@ export default function Questions(props) {
     const choosen = e.target.innerText;
 
     setans([{ choosen, id }]);
-
+    // console.log("data",ans)
     if (newquestion.correct === choosen) {
       const s = score + 1;
       setscore(s);
@@ -177,28 +182,37 @@ export default function Questions(props) {
     <div>
       {!over && newquestion && newquestion.options && (
         <div>
-          <h1>{newquestion.question}</h1>
+          <h1 className="header">Take a Quiz.</h1>
+          <div  className="main-div">
+          <p className='question'>{newquestion.question}</p>
+          <div className="options">
           {newquestion.options.map((opt) => (
-            <div key={opt}>
-              <button ref={name} onClick={chooseAns}>
+            <div className="option-container" key={opt}>
+              <button className="option-button" ref={name} onClick={chooseAns}>
                 {opt}
               </button>
             </div>
           ))}
+          </div>
+          </div>
+
+
+          <div className="next-button-container">
           {!nextClick && (
-            <button
+            <button className="next-finish"
               type="submit"
               disabled={isDisabled}
               onClick={() => newQuestion(newquestion.id)}
             >
-              next
+              Next
             </button>
           )}
           {finish && (
-            <button onClick={userScore} disabled={isDisabled}>
-              finish
+            <button className="next-finish" onClick={userScore} disabled={isDisabled}>
+              Finish
             </button>
           )}
+          </div>
         </div>
       )}
       {over && !showAnswers && (

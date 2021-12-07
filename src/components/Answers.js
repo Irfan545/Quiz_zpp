@@ -1,14 +1,17 @@
+import './app.css'
+
 function Answers({ givenAns, playAgain }) {
-  console.log(givenAns)
   return (
     <div>
-      <h1>Given answers are:</h1>
+      <p className="ans-header">Given answers are:</p>
       { givenAns?.map((ans) => (
-        <div key={ans[0].id}>
-          <h3>{ans[0].choosen}</h3>
+        <div className="ans-options" key={ans[0].id}>
+          <p className="percentage-color">{ans[0].choosen}</p>
         </div>
       ))}
-      <button onClick={playAgain}>retake</button>
+      <div className="score-buttons">
+      <button onClick={playAgain} className="retake-ans">retake</button>
+      </div>
     </div>
   );
 }
